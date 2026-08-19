@@ -14,7 +14,7 @@ int main(void)
 {
     const int width = 640;
     const int height = 480;    
-    const int particle_count = 10000;
+    const int particle_count = 1000;
     struct Particle particles[particle_count];
 
     Display *display = display_create(width, height);
@@ -55,11 +55,14 @@ int main(void)
 	   float dx = width / 2.0f - p->x;
 	   float dy = height / 2.0f - p->y;
 
-           p->vecX += dx * 0.01f;
-	   p->vecY += dy * 0.01f;
+           p->vecX += dx;
+	   p->vecY += dy;
 	   p->vecX += ((p->x>(width/2))?-1:1);
 	   p->vecY += ((p->y>(height/2))?-1:1);
-		
+	   
+	   p->vecX *= 0.001f;
+	   p->vecY *= 0.001f;
+
 	   p->vecX += ((int)g1-(int)g)/40;
 	   p->vecY += ((int)b1-(int)b)/40;
 	   p->x += p->vecX;
